@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+<!--    准备好容器-->
+    <div id="test"></div>
+<!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--此处写babel-->
+<script type="text/babel">
+    //1. 创建虚拟DOM
+
+    class Person extends React.Component{
+
+        state = {
+            persons:[
+                {id:1,name:'小丁',age:18},
+                {id:2,name:'小楚',age:18},
+            ]
+        }
+
+        add=()=>{
+            const {persons} = this.state
+            const p = {id:persons.length+1,name:'小楼',age:16}
+            this.setState({persons: [p,...persons]})
+        }
+
+        render(){
+            return (
+                <div>
+                    <h2>展示人员信息</h2>
+                    <h3>使用index作为key</h3>
+                    <button onClick={this.add}>添加小楼</button>
+                    <ul>
+                        {
+                            this.state.persons.map((person,index)=>{
+                                return <li key={index}>id:{person.id} name: {person.name} age: {person.age}<input type="text"/></li>
+                            })
+                        }
+                    </ul>
+                    <hr/>
+                    <hr/>
+                    <h3>使用唯一标识id作为key</h3>
+                    <button onClick={this.add}>添加小楼</button>
+                    <ul>
+                        {
+                            this.state.persons.map((person,index)=>{
+                                return <li key={person.id}>id:{person.id} name: {person.name} age: {person.age}<input type="text"/></li>
+                            })
+                        }
+                    </ul>
+                </div>
+
+                )
+        }
+    }
+
+
+    //2. 渲染虚拟DOM到页面
+    ReactDOM.render(<Person/>,document.getElementById('test'))
+
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+
