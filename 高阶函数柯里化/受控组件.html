@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>非受控组件</title>
+
+    <!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--    准备好容器-->
+<div id="test"></div>
+<!--此处写babel-->
+<script type="text/babel">
+    //创建组件 非受控组件，现用现取
+    class Login extends React.Component {
+
+        //初始化状态
+        state = {
+            username:'',
+            password:'',
+        }
+
+        // //保存用户名到状态
+        // saveUsername = (event)=>{
+        //     console.log(event.target.value)
+        //     this.setState({username: event.target.value})
+        // }
+        //
+        // //保存密码到状态
+        // savePassword = (event)=>{
+        //     console.log(event.target.value)
+        //     this.setState({password: event.target.value})
+        // }
+
+        /**
+         * 高阶函数：如果一个函数符合下列条件：
+         * 1. 若A函数接收的参数是一个函数，那么A为高阶函数
+         * 2. 若A函数调用的返回值依然是一个函数，那么A也是
+         * 常见的高阶函数：promise, setTimeout, arr.map()
+         * 函数的柯里化：通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式
+         * @param dataType
+         * @returns {function(...[*]=)}
+         */
+
+        saveFormData = (dataType)=>{
+            console.log(dataType);
+            return (event)=>{
+                this.setState({[dataType]:[event.target.value]})
+            }
+        }
+
+        hanldeSubmit = (event) => {
+            event.preventDefault()//阻止表单提交
+            const {username, password} = this.state
+            console.log(`你输入的用户名是${username}：你输入的密码是：${password}`)
+            alert(`你输入的用户名是${username}：你输入的密码是：${password}`)
+        }
+
+
+        //把函数交给onChange
+
+        render() {
+            return (
+                <form onSubmit={this.hanldeSubmit}>
+                    username: <input onChange={this.saveFormData('username')} type="text" name="username"/>
+                    password: <input onChange={this.saveFormData('password')} type="password" name="password"/>
+                    <button>登录</button>
+                </form>
+            )
+        }
+    }
+
+
+    ReactDOM.render(<Login/>, document.getElementById("test"))
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+

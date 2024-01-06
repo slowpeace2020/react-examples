@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+
+<!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--    准备好容器-->
+<div id="test"></div>
+<!--此处写babel-->
+<script type="text/babel">
+
+    //1.创建类式组件
+    class MyComponent extends React.Component{
+        //render是放在哪里的？类的原型对象上，供MyComponent实例使用
+        render(){
+            console.log("render的this: ",this)
+            return <h2>我是类定义的组件（适用于【复杂组件】的定义）</h2>
+        }
+    }
+
+
+    //渲染组件到页面
+    ReactDOM.render(<MyComponent/>,document.getElementById('test'))
+    /** 执行ReactDOM.render(<MyComponment/>....之后发生了什么？
+     * 1. react解析组件标签，找到了MyComponment组件
+     * 2. 发现组件是用类定义的，随后new出来该类的实例，并通过该实例调用到原型的render方法执行，
+     * 3. 将render返回的虚拟DOM转为真实DOM,呈现在页面中
+     *
+     */
+
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+

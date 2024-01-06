@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+
+<!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--    准备好容器-->
+<div id="test1"></div>
+<div id="test2"></div>
+<div id="test3"></div>
+<!--此处写babel-->
+<script type="text/babel">
+    //创建类组件
+    class Person extends React.Component{
+        render(){
+            console.log(this)
+            return (
+                <ul>
+                    <li>name: {this.props.name}</li>
+                    <li>gender: {this.props.gender}</li>
+                    <li>age: {this.props.age+1}</li>
+                </ul>
+            )
+        }
+    }
+    const p = {name:"Betty",gender:"F",age:19}
+    //渲染组件到页面
+
+    //展开运算符，只适用于标签
+    //prop为只读属性，不能在内部修改属性值
+    ReactDOM.render(<Person {...p}/>,document.getElementById("test1"));
+    ReactDOM.render(<Person name="Cindy" age={20} gender="F"/>,document.getElementById("test2"));
+    // ReactDOM.render(<Person name="Diane" age="19" gender="F"/>,document.getElementById("test3"));
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+

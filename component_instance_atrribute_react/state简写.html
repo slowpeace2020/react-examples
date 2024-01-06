@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+    <!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--    准备好容器-->
+<div id="test"></div>
+<!--此处写babel-->
+<script type="text/babel">
+    //创建组件
+    class Weather extends React.Component {
+
+        render() {
+            const {isHot,wind} = this.state
+            return <h1 onClick={this.changeWeather}>今天天气{isHot ? '炎热' : '凉爽'}，{wind}</h1>
+        }
+
+        //给类的实例绑定属性，赋值
+        state = {isHot: false, wind: '大风'}//初始化状态
+        //自定义方法-----要用赋值语句+箭头函数，放在原型上
+        changeWeather = ()=>{
+            const isHot = this.state.isHot
+            this.setState({isHot:!isHot})
+        }
+    }
+    //强烈注意
+    //组件中的render方法的this为组件实例对象
+    //组件自定义方法的this为undefined，如何解决？
+    //a. 强制绑定this：通过函数对象的bind(this)
+    //箭头函数
+    //状态数据不能直接修改或更新，要通过setState
+
+    //渲染组件到页面
+    ReactDOM.render(<Weather/>, document.getElementById('test'))
+
+    // function demo() {
+    //     alert('标题被点击了')
+    // }
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+

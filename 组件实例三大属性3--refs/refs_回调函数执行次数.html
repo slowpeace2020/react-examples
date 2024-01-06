@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+    <!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--    准备好容器-->
+<div id="test"></div>
+<!--此处写babel-->
+<script type="text/babel">
+    //创建类组件
+    class Demo extends React.Component {
+        //初始化state
+        state = {isHot: false}
+
+        showInfo = () => {
+            const {input1} = this
+            alert(input1.value)
+        }
+
+        changeWeather = () => {
+            //获取原来的状态，结构赋值
+            const {isHot} = this.state
+            //更新状态
+            this.setState({isHot: !isHot})
+        }
+
+       //类绑定函数
+        saveInput = (c)=>{
+            this.input1 = c;
+            console.log("来了，执行函数,只执行一次")
+        }
+
+        render() {
+            const {isHot} = this.state
+            return (
+                <div>
+                    <h1>今天天气很{isHot ? '凉爽' : '炎热'}</h1>
+                    {/* jsx注释形式
+                    <input ref={currentNode => {
+                        this.input1 = currentNode;
+                        console.log("来了，执行内联函数，点击一次执行一次")
+                    }} type="text" placeholder="点击按钮提示左侧数据"></input>
+                    */}
+                    <input ref={this.saveInput} type="text"/><br/><br/>
+                    <button onClick={this.showInfo}>点我提示左侧数据</button>
+                    <button onClick={this.changeWeather}>点我切换天气</button>
+                </div>
+            )
+        }
+    }
+
+    //ref="input1" 过时的API, 效率低
+    //渲染组件到页面
+    ReactDOM.render(<Demo/>, document.getElementById("test"))
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+    <!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--    准备好容器-->
+<div id="test"></div>
+<!--此处写babel-->
+<script type="text/babel">
+    //创建类组件
+    class Demo extends React.Component {
+        //展示左侧输入框的数据
+        showData = () => {
+            // const input = document.getElementById("input1")
+            // alert(input.value)
+
+            // console.log(this.refs.input1)
+            const {input1} = this
+            alert(input1.value)
+        }
+        //展示右侧输入框的数据
+        showData2 = () => {
+            // console.log(this.refs.input2)
+            const {input2} = this
+            alert(input2.value)
+        }
+
+        render() {
+            return (
+                <div>
+
+                    <input ref={(curentNode) => {
+                        this.input1 = curentNode
+                    }} type="text" placeholder="点击按钮提示左侧数据"></input>
+                    <button onClick={this.showData}>点我提示左侧数据</button>
+                    &nbsp;
+                    <input ref={curentNode => this.input2 = curentNode} onBlur={this.showData2} type="text"
+                           placeholder="失去焦点左侧数据"/>&nbsp;
+                </div>
+            )
+        }
+    }
+
+    //ref="input1" 过时的API, 效率低
+    //渲染组件到页面
+    ReactDOM.render(<Demo/>, document.getElementById("test"))
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+

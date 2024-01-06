@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>createRef</title>
+    <!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--    准备好容器-->
+<div id="test"></div>
+<!--此处写babel-->
+<script type="text/babel">
+    //创建类组件
+    class Demo extends React.Component {
+
+        /**
+         * React.createRef调用后返回一个容器，存储被ref标识的节点，专人专用，只能存一个，后面的覆盖前面的
+         */
+        myRef = React.createRef()
+        myRef2 = React.createRef()
+        //展示左侧输入框的数据
+        showData = () => {
+            console.log(this.myRef)
+            alert(this.myRef.current.value)
+        }
+        //展示右侧输入框的数据
+        showData2 = () => {
+            // console.log(this.refs.input2)
+            alert(this.myRef2.current.value)
+        }
+
+        render() {
+            return (
+                <div>
+
+                    <input ref={this.myRef} type="text"></input> &nbsp;
+                    <button onClick={this.showData}>点我提示左侧数据</button>&nbsp;
+                    <input onBlur={this.showData2} ref={this.myRef2} type="text" placeholder="点击按钮提示数据"></input> &nbsp;
+                </div>
+            )
+        }
+    }
+
+    //ref="input1" 过时的API, 效率低
+    //渲染组件到页面
+    ReactDOM.render(<Demo/>, document.getElementById("test"))
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+
+<!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--    准备好容器-->
+<div id="test"></div>
+<!--此处写babel-->
+<script type="text/babel">
+
+
+
+    //创建类组件
+    class Life extends React.Component{
+
+        //初始化状态
+        state = {opacity:1}
+
+        death =()=>{
+            //清除定时器
+            // clearInterval(this.timer)
+            //卸载组件
+            ReactDOM.unmountComponentAtNode(document.getElementById("test"))
+        }
+        action = ()=>{
+            setInterval(()=>{
+                //获取状态
+                let {opacity} = this.state
+                //减小0.1
+                opacity-=0.1
+                if(opacity<=0)opacity=1
+                //设置新的透明度
+                this.setState({opacity})
+            },200)
+        }
+
+        //组件挂载到页面之后调用
+        componentDidMount(){
+            console.log("componentDidMount")
+           this.timer = setInterval(()=>{
+                //获取状态
+                let {opacity} = this.state
+                //减小0.1
+                opacity-=0.1
+                if(opacity<=0)opacity=1
+                //设置新的透明度
+                this.setState({opacity})
+            },200)
+        }
+
+        //组件将要卸载
+        componentWillUnmount(){
+            //清除定时器
+            clearInterval(this.timer)
+        }
+
+        //render调用时机：初始化渲染、状态更新之后
+        render(){
+            console.log("render")
+           return (
+                <div>
+                    <h2 style={{opacity: this.state.opacity}}>react学不会怎么办</h2>
+                    <button onClick={this.death}>不活了</button>
+                </div>
+            )
+        }
+    }
+
+    //渲染组件
+    ReactDOM.render(<Life/>,document.getElementById("test"))
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+

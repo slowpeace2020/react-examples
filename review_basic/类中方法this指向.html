@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Person{
+        //构造器方法
+        constructor(name,age) {
+            //this是谁？类的示例对象
+            this.name = name;
+            this.age=age;
+        }
+        //一般方法
+        speak(){
+            //speak方法放在哪里了？类的原型对象上
+            //通过person实例调用speak，speak的this就是Person实例
+            console.log(`my name is ${this.name}, my age is ${this.age}`)
+        }
+        study(){
+
+            console.log(this)
+        }
+
+    }
+
+    //创建一个Person的实例对象
+    const p1 = new Person('tom',18)
+    p1.study();
+    const ss = p1.study
+    console.log(ss())
+</script>
+</html>

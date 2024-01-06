@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>jsx语法规则</title>
+    <style>
+        .title{
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+
+    <!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--    准备好容器-->
+<div id="test"></div>
+<!--此处写babel-->
+<script type="text/babel">
+    const myId = 'siliconAAA'
+    const myData = 'Hello React'
+    //1. 创建虚拟DOM
+    const VDOM = (
+        /* 此处不写引号，因为不是字符串，是虚拟DOM*/
+        // <h2 id="silicon">
+        //     <span>Hello React</span>
+        // </h2>
+        <div>
+            <h2 className="title" id={myId.toLowerCase()}>
+                <span style={{color:'white',fontSize:'20px'}}>{myData.toLowerCase()}</span>
+            </h2>
+            <h2 className="title" id={myId.toUpperCase()}>
+                <span style={{color:'black',fontSize:'30px'}}>{myData.toLowerCase()}</span>
+            </h2>
+            <Good>123</Good>
+        </div>
+    )
+    //渲染虚拟DOM到页面
+    ReactDOM.render(VDOM,document.getElementById("test"))
+    /*
+    * jsx语法规则：
+    * 1. 定义虚拟DOM时不写引号
+    * 2. 标签中混入JS表达式用{}
+    * 3. 样式类名指定不要用class,用className
+    * 4. 内联样式，要用style={{key:value,key:value}}的形式
+    * 5. 虚拟DOM只能有一个根标签
+    * 6. 标签必须闭合
+    * 7. 标签首字母 a. 小写开头，标签被转为html同名元素，若html无同名元素，则报错
+    * b. 大写字母开头，react去渲染对应组件，若组件没有定义，则报错
+    *
+    * */
+
+
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+

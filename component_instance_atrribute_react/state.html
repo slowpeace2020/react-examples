@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+    <!--    引入核心库-->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!--    引入react-dom 用于支持react操作DOM-->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: 引入babel用于将jsx转为js-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<!--    准备好容器-->
+<div id="test"></div>
+<!--此处写babel-->
+<script type="text/babel">
+    //创建组件
+    class Weather extends React.Component {
+        //构造器调用几次？---- 1次
+        constructor(props) {
+            super(props)
+            console.log('constructor')
+            //初始化状态
+            this.state = {isHot: false, wind: '大风'}
+            //把原型的changeWeather函数挂载到实例上的属性上，绑定
+            this.changeWeather = this.changeWeather.bind(this)
+
+        }
+
+        //render调用几次？ ---- 1+n次 1是初始化的那一次，n为状态更新次数
+        render() {
+            console.log(this)
+            //读取状态
+            const {isHot,wind} = this.state
+            //return <h1 onClick={demo}>今天天气{isHot ? '炎热' : '凉爽'}</h1>
+            return <h1 onClick={this.changeWeather}>今天天气{isHot ? '炎热' : '凉爽'}，{wind}</h1>
+        }
+
+        //changeWeather调用几次？ ---- 点几次调几次
+        changeWeather(){
+            //changeWeather放在哪里？ Weather的原型对象上，供实例使用
+            //由于changeWeather是作为onClick的回调，所以不是通过实例调用，是直接调用，
+            //类中方法默认开启了局部的严格模式，所以changeWeather中的this为undefined
+            console.log(this)
+
+            //严重注意：状态state不能直接更改，以下为直接更改
+            const isHot = this.state.isHot
+            // this.state.isHot= !isHot //错误写法
+            // console.log(this.state.isHot)
+            //严重注意：状态state必须通过setState修改，更新是合并，不是替换
+            this.setState({isHot:!isHot})
+
+
+        }
+    }
+
+    //渲染组件到页面
+    ReactDOM.render(<Weather/>, document.getElementById('test'))
+
+    // function demo() {
+    //     alert('标题被点击了')
+    // }
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  Read this page for starting a new React project with JSX:
+  https://react.dev/learn/start-a-new-react-project
+
+  Read this page for adding React with JSX to an existing project:
+  https://react.dev/learn/add-react-to-an-existing-project
+-->
+</body>
+</html>
+
