@@ -1,0 +1,43 @@
+/* styles.css */
+
+/* Simple styling for the ToDo list */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+#todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+#todo-list li {
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+}
+
+.add-todo {
+    margin-bottom: 20px;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#completed-tasks {
+    margin-top: 20px;
+}
+
+.task-checkbox {
+    margin-right: 10px;
+}
