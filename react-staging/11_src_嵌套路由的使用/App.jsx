@@ -4,13 +4,14 @@ import "./App.css";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import MyNavLink from "./components/MyNavLink";
-import Header from "./components/Header";
 
 export default class App extends Component {
     render() {
         return (
             <div>
-                <Header/>
+                <div className="content">
+                    <h1>React Router Demo</h1>
+                </div>
                 <div className="navbar">
                     {/* React Router links to switch components */}
                     <MyNavLink to="/home">Home</MyNavLink>

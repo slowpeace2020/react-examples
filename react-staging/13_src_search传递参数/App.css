@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    border: 1px solid red;
+    width: 200px;
+    float: left;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li {
+    padding: 8px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar ul li.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.content {
+    margin-left: 210px; /* same as navbar width + 10px space */
+    border: 1px solid black;
+    height: 200px; /* can be adjusted as needed */
+    padding: 10px;
+}
