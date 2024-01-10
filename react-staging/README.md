@@ -186,4 +186,25 @@ HashRouter的路径包含＃，例处： localhost：3080/#/ demo/test
 3.刷新后对路由state參数的影劘
 (1).BrowserRouter没有任何说南，因为state保存在history对象中。
 (2）.HashRouter刷新后会导致路1state参数的丢失！！！
-4. 备注：HashRouterr以用于解决一些路径错误相关的问题。
+4. 备注：HashRouter用于解决一些路径错误相关的问题。
+
+
+## 十四、antd的按需引入+自定主题
+1. 安装依赖: yarn add react-app-rewired customize-cra babel-plugin-import less le
+2. 修改package.json
+"scripts": {
+"start"; "react-app-rewired start",
+"build": "react-app-rewired build"
+"test": "react-app-rewired test"
+"eject": "react-scripts eject"
+},
+...
+3.根目录下创建config-overrides.js
+1能置具体的修改規则
+const { override, fixBabelImports,addLessLoader) = require ('customize-cra').
+module.exports = override
+fixBabelImports ('import', {
+libraryName: 'antd'
+libraryDirectory: 'es
+style: true,
+
