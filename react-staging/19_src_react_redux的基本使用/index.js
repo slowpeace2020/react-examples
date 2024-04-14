@@ -7,24 +7,23 @@ import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
 import store from './redux/store'
-import {Provider} from 'react-redux'
 
 //渲染App到页面
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <Provider store={store}> <App/></Provider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
 
 //检测redux中状态的变化，只要变化就调用render,重新渲染
-// store.subscribe(()=>{
-//     root.render(
-//         <React.StrictMode>
-//             <App />
-//         </React.StrictMode>
-//     );
-// })
+store.subscribe(()=>{
+    root.render(
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    );
+})
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

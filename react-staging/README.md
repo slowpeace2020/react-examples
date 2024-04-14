@@ -208,3 +208,53 @@ libraryName: 'antd'
 libraryDirectory: 'es
 style: true,
 
+## redux
+(2). src 下建立:
+-redux
+-store.is
+-count_reducer.js
+(3).store.is:
+1）. 引入redux中的createstore的数，创建一-个store
+2).createstore调用时要传入一个为其服务的reducer
+3)•记得暴站store对象
+(4).count_reducer.js:
+1).reducer的本质是一-个的数，按收：prestate,action，返回加工后的状念
+2).reducer有两个作用：初始化状念，加工状态
+3).reducer被第一次调用时，是store自动触发的，
+4) preState 是undefined,
+WiliactionA:(type:'@@REDUX/INIT_a.2.b.4}
+（5)在index•js中监测store中状念的改变，一旦发生改变重新渲染<App/>
+备注：redux只负责管理状态：至于状念的改变驱动页面的展示，要靠我们自己写。
+
+## 3•求和案例_redux异步action版
+(1)）•明确：延迟的动作不想交给组件自身，想交纷action
+（2）•何时需要异业action：想要对状念进行操作，但是具体的数据货异步任务返回。
+（3） •具体编码：
+1).yarn add redux-thunk。并配置有store中
+2）•创建action的的数不再返回一般对象，而是一个的数。该两数中写异步任务。
+3）.异步任务有结果后，分发一个同步的action去真正操作数据。
+（4).各注：异步action不是必须要写的，完全可以自己等待异步任务的结果了再去分发同步action。
+
+## 4• 求和案例_react-redux基本使用
+（1）•明确两个概念：
+1)•UI组件：不能使用任何redux的api，只负责页面的星现、交互等。
+2).容器组件：负责和redux通信，将结果交给UI组作。
+（2）•如何创建一•个容器组件——靠react-redux 的 connect两数
+connect (mapStateToProps‚mapDispatchToProps)(UI411%:)
+-mapstateToprops：映射状念，返回值是一个对象
+-mapDispatchToProps：映射探作状态的方法，返回值是一个对象
+(3）•各注：容器组件中的store是作props传进去的，而不是在容器组件中直按引入
+
+## 5。求和案例_react-redux优化
+（1）•容器组件和U工组件整合一个文件
+(2）•无需自己给容器组什传道store，给<App/>包赛一个‹Provider store={store}>即可。
+(3)。使用了react-redux后也不用再自己检测redux中状态的改变了，容器组什可以自动完成这个工保。
+（4）.mapDispatchToprops也可以简单的写成一个对象
+（5）•一个组件要科redux“打交道”要经过哪儿步？
+（1）•定义好U工组件---不暴露
+(2).引 connect生成一个容器组件，并暴露，写法奶下：
+connect
+state => ({key:value!)
+{key:xxxxxAction)
+)(UI4144)
+(4)•在UI组件中通过this.props.xxxxxxx读取和操作状态
