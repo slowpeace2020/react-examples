@@ -29,7 +29,8 @@ class Records extends Component {
 //                 error
 //             }),
 //         )
-        axios.get(RecordsAPI.api).then(
+//
+        axios.get(`${RecordsAPI.api}/api/v1/records`).then(
             response => this.setState({
                 records: response.data,
                 isLoaded: true,
