@@ -3,6 +3,8 @@ import Record from "./Record";
 // import $ from 'jquery';
 import {getJSON} from 'jquery';
 import axios from 'axios';
+import PropTypes from "prop-types";
+import * as RecordsAPI from "../utils/RecordsAPI";
 
 class Records extends Component {
     constructor() {
@@ -16,23 +18,20 @@ class Records extends Component {
 
     componentDidMount() {
         // $.getJSON("https://661b353e65444945d04f27a0.mockapi.io/api/v1/records").then(
-        // getJSON("https://661b353e65444945d04f27a0.mockapi.io/api/v1/records").then(
-            // response=>console.log(response),
-            // response=>console.log(response),
-        //     response => this.setState({
-        //         records: response,
-        //         isLoaded: true,
-        //     }),
-        //     error => this.setState({
-        //         isLoaded: true,
-        //         error
-        //     })
-        // )
-        axios.get("https://661b353e65444945d04f27a0.mockapi.io/api/v1/records").then(
-            // response=>console.log(response),
-            // response=>console.log(response),
+//         getJSON("https://661b353e65444945d04f27a0.mockapi.io/api/v1/records").then(
+//             // response=>console.log(response),
+// ]            response => this.setState({
+//                 records: response,
+//                 isLoaded: true,
+//             }),
+//             error => this.setState({
+//                 isLoaded: true,
+//                 error
+//             }),
+//         )
+        axios.get(RecordsAPI.api).then(
             response => this.setState({
-                records: response,
+                records: response.data,
                 isLoaded: true,
             }),
         ).catch(
@@ -72,3 +71,10 @@ class Records extends Component {
 }
 
 export default Records;
+
+Records.propTypes = {
+    id:PropTypes.string,
+    date:PropTypes.string,
+    title:PropTypes.string,
+    amount:PropTypes.number
+}
