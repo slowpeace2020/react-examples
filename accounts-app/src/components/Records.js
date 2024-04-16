@@ -5,6 +5,7 @@ import {getJSON} from 'jquery';
 import axios from 'axios';
 import PropTypes from "prop-types";
 import * as RecordsAPI from "../utils/RecordsAPI";
+import RecordForm from "./RecordForm";
 
 class Records extends Component {
     constructor() {
@@ -30,7 +31,7 @@ class Records extends Component {
 //             }),
 //         )
 //
-        axios.get(`${RecordsAPI.api}/api/v1/records`).then(
+        RecordsAPI.getAll().then(
             response => this.setState({
                 records: response.data,
                 isLoaded: true,
@@ -45,27 +46,34 @@ class Records extends Component {
 
     render() {
         const {error,isLoaded, records} = this.state;
+
+        let recordsComponent;
+
+
         if (error){
-            return <div>Error:{error.responseText}</div>
+            recordsComponent = <div>Error:{error.responseText}</div>
         }else if(!isLoaded){
-            return <div>Loading....</div>
+            recordsComponent = <div>Loading....</div>
+        }else{
+            recordsComponent =                 <table className="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Account</th>
+                </tr>
+                </thead>
+                <tbody>
+                {records.map((record) => <Record key={record.id} {...record}/>)}
+                </tbody>
+            </table>
+
         }
         return (
             <div>
                 <h2>Records</h2>
-                <table className="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Title</th>
-                        <th>Account</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {records.map((record) => <Record key={record.id} {...record}/>)}
-                    </tbody>
-                </table>
-
+                <RecordForm />
+                {recordsComponent}
             </div>
         )
     }
