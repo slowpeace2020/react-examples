@@ -44,27 +44,59 @@ class Records extends Component {
         )
     }
 
+    addRecord(record) {
+        console.log(record)
+        this.setState({
+            error: null,
+            isLoaded: true,
+            records: [
+                ...this.state.records, record
+            ]
+        })
+    }
+
+    updateRecord(record, data) {
+        const recordIndex = this.state.records.indexOf(record)
+        const newRecords = this.state.records.map((item, index) => {
+            if (index !== recordIndex) {
+                return item;
+            }
+
+            // 合并值
+            return {
+                ...item,
+                ...data,
+            };
+        });
+        this.setState({
+            records: newRecords,
+        })
+
+    }
+
     render() {
-        const {error,isLoaded, records} = this.state;
+        const {error, isLoaded, records} = this.state;
 
         let recordsComponent;
 
 
-        if (error){
+        if (error) {
             recordsComponent = <div>Error:{error.responseText}</div>
-        }else if(!isLoaded){
+        } else if (!isLoaded) {
             recordsComponent = <div>Loading....</div>
-        }else{
-            recordsComponent =                 <table className="table table-bordered">
+        } else {
+            recordsComponent = <table className="table table-bordered">
                 <thead>
                 <tr>
                     <th>Date</th>
                     <th>Title</th>
                     <th>Account</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                {records.map((record) => <Record key={record.id} {...record}/>)}
+                {records.map((record) => <Record key={record.id} {...record} record={record}
+                                                 handleEditRecord={this.updateRecord.bind(this)}/>)}
                 </tbody>
             </table>
 
@@ -72,7 +104,7 @@ class Records extends Component {
         return (
             <div>
                 <h2>Records</h2>
-                <RecordForm />
+                <RecordForm handleNewRecord={this.addRecord.bind(this)}/>
                 {recordsComponent}
             </div>
         )
@@ -82,8 +114,8 @@ class Records extends Component {
 export default Records;
 
 Records.propTypes = {
-    id:PropTypes.string,
-    date:PropTypes.string,
-    title:PropTypes.string,
-    amount:PropTypes.number
+    id: PropTypes.string,
+    date: PropTypes.string,
+    title: PropTypes.string,
+    amount: PropTypes.number
 }
