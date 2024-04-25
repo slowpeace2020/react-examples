@@ -6,6 +6,7 @@ import axios from 'axios';
 import PropTypes from "prop-types";
 import * as RecordsAPI from "../utils/RecordsAPI";
 import RecordForm from "./RecordForm";
+import AmountBox from "./AmountBox";
 
 class Records extends Component {
     constructor() {
@@ -74,6 +75,40 @@ class Records extends Component {
 
     }
 
+    deleteRecord(record) {
+        //过滤record
+        //找出在当前array的index然后过滤掉
+        const recordIndex = this.state.records.indexOf(record)
+        const newRecords = this.state.records.filter((item, index) => index != recordIndex)
+        this.setState({
+            records: newRecords
+        })
+    }
+
+    credits() {
+        let credits = this.state.records.filter((record) => {
+            return record.amount >= 0;
+        })
+
+        return credits.reduce((prev, cur) => {
+            return prev + Number.parseInt(cur.amount, 0)
+        }, 0)
+    }
+
+    debits() {
+        let credits = this.state.records.filter((record) => {
+            return record.amount < 0;
+        })
+
+        return credits.reduce((prev, cur) => {
+            return prev + Number.parseInt(cur.amount, 0)
+        }, 0)
+    }
+
+    balance() {
+        return this.credits() + this.debits();
+    }
+
     render() {
         const {error, isLoaded, records} = this.state;
 
@@ -96,7 +131,9 @@ class Records extends Component {
                 </thead>
                 <tbody>
                 {records.map((record) => <Record key={record.id} {...record} record={record}
-                                                 handleEditRecord={this.updateRecord.bind(this)}/>)}
+                                                 handleEditRecord={this.updateRecord.bind(this)}
+                                                 handleDeleteRecord={this.deleteRecord.bind(this)}
+                />)}
                 </tbody>
             </table>
 
@@ -104,6 +141,11 @@ class Records extends Component {
         return (
             <div>
                 <h2>Records</h2>
+                <div className="row mb-3">
+                    <AmountBox text="Credit" type="success" amount={this.credits()}></AmountBox>
+                    <AmountBox text="Debit" type="danger" amount={this.debits()}></AmountBox>
+                    <AmountBox text="Balance" type="info" amount={this.balance()}></AmountBox>
+                </div>
                 <RecordForm handleNewRecord={this.addRecord.bind(this)}/>
                 {recordsComponent}
             </div>
