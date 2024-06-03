@@ -91,7 +91,7 @@ class Records extends Component {
         })
 
         return credits.reduce((prev, cur) => {
-            return prev + Number.parseInt(cur.amount, 0)
+            return prev + Number.parseFloat(cur.amount, 0)
         }, 0)
     }
 
@@ -101,7 +101,7 @@ class Records extends Component {
         })
 
         return credits.reduce((prev, cur) => {
-            return prev + Number.parseInt(cur.amount, 0)
+            return prev + Number.parseFloat(cur.amount, 0)
         }, 0)
     }
 

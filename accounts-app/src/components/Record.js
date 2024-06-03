@@ -21,7 +21,7 @@ export default class Record extends Component {
         const record = {
             date: this.refs.date.value,
             title: this.refs.title.value,
-            amount: Number.parseInt(this.refs.amount.value),
+            amount: Number.parseFloat(this.refs.amount.value),
         }
         RecordsAPI.update(this.props.record.id, record).then(
             response => {

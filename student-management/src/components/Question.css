@@ -1,0 +1,67 @@
+/*.question-container {*/
+/*    white-space: pre-wrap;*/
+/*    overflow-wrap: break-word;*/
+/*    font-family: Arial, sans-serif;*/
+/*    line-height: 1.5;*/
+/*    padding: 10px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 5px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+.question-container {
+    display: flex;
+    justify-content: space-between; /* 左右对齐 */
+    margin-bottom: 20px;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.question, .answer {
+    flex: 1; /* 平分空间 */
+    display: flex;
+    flex-direction: column;
+}
+
+.question-text, .answer-text {
+    white-space: pre-line; /* 在遇到换行符时换行 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    word-wrap: break-word; /* 在必要时强制换行 */
+    margin-bottom: 10px;
+
+}
+
+.edit-input,
+.edit-textarea {
+    width: 100%; /* 宽度100% */
+    min-height: 300px; /* 最小高度100像素 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.tags,
+.category {
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    margin-bottom: 10px;
+}
+
+.tags input,
+.category input {
+    width: auto; /* 恢复普通大小 */
+    height: 1px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px; /* 右侧间距 */
+}
+
+.answer-button {
+    margin-top: 10px;
+}
+
