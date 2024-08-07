@@ -17,7 +17,9 @@ const QuestionForm = () => {
 
         const data = {
             content: question,
-            answer
+            answer,
+            category,
+            tags,
         };
 
         try {
@@ -52,6 +54,7 @@ const QuestionForm = () => {
                         <option value="AWS">AWS</option>
                         <option value="BQ">BQ</option>
                         <option value="Java">Java</option>
+                        <option value="System Design">System Design</option>
                     </select>
                 </div>
                 <div>

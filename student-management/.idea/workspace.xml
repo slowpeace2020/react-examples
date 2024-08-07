@@ -5,19 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51ac11ae-5ea6-402b-a6d3-b6c098c1f052" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Question.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Question.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/QuestionCategoryPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/QuestionCategoryPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/QuestionForm.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/QuestionForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudentTable.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StudentTable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/studentService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-app/src/components/Record.js" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-app/src/components/Record.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-app/src/components/RecordForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-app/src/components/RecordForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../accounts-app/src/components/Records.js" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts-app/src/components/Records.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../my-xtend-page/src/components/Footer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../my-xtend-page/src/components/Header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../my-xtend-page/src/components/MainContent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../stock-test/src/components/StockData.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/StockData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../amplify-backend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Question.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionDetailPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Question.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionDetailPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuestionCategoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionCategoryPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuestionForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionForm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuestionForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,6 +198,17 @@
       <workItem from="1717253731809" duration="43000" />
       <workItem from="1717273965711" duration="6221000" />
       <workItem from="1717330909188" duration="22000" />
+      <workItem from="1717341928288" duration="8741000" />
+      <workItem from="1717433257007" duration="500000" />
+      <workItem from="1717446448452" duration="938000" />
+      <workItem from="1717704046604" duration="525000" />
+      <workItem from="1718372163211" duration="3256000" />
+      <workItem from="1718477378622" duration="153000" />
+      <workItem from="1718637116413" duration="131000" />
+      <workItem from="1718637407679" duration="1426000" />
+      <workItem from="1719257968999" duration="3818000" />
+      <workItem from="1720550817672" duration="1831000" />
+      <workItem from="1721137931909" duration="2736000" />
     </task>
     <servers />
   </component>

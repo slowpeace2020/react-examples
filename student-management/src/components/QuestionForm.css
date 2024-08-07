@@ -29,6 +29,11 @@
     box-sizing: border-box;
 }
 
+.mde-editor, .mde-preview {
+    background-color: white !important;
+    color: black;
+}
+
 .form-container textarea {
     width: 100%;
     height: 300px; /* 增加高度 */
